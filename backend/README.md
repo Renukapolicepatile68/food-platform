@@ -16,7 +16,7 @@ Or paste the contents of `schema.sql` directly into your MySQL client.
 
 ### 2. Configure Environment Variables
 
-Edit `backend/.env` with your MySQL credentials:
+Edit `backend/.env` with your MySQL credentials and JWT secret:
 
 ```env
 DB_HOST=localhost
@@ -24,6 +24,7 @@ DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=your_password_here
 DB_NAME=quickbite
+JWT_SECRET=your_super_secret_jwt_key
 ```
 
 ---

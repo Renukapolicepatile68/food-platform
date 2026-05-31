@@ -7,18 +7,24 @@ import bcrypt
 import jwt
 from datetime import datetime, timedelta
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = FastAPI(title="QuickBite API", version="1.0.0")
 
 # Security configuration
 security_scheme = HTTPBearer()
-JWT_SECRET = "quickbite_super_secret_key_123!"  # In production, load from env var
+JWT_SECRET = os.getenv("JWT_SECRET")
+if not JWT_SECRET:
+    raise RuntimeError("JWT_SECRET environment variable is required for JWT signing")
 JWT_ALGORITHM = "HS256"
 
 # Allow React dev server to call the API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=["http://localhost:5173", "http://localhost:5174", "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
