@@ -1,0 +1,5 @@
+Food Menu Feature
+
+- Display food items
+- Show food prices
+- Add food categories
